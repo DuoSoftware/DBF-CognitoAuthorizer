@@ -62,6 +62,7 @@ const validateToken = (req) => {
                 if (err) {
                   reject(new Error("Invalid token.", err));
                 } else {
+                  payload['token'] = token;
                   resolve(payload);
                 }
               });
