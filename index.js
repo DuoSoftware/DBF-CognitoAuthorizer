@@ -58,12 +58,10 @@ const validateToken = (req) => {
             return reject(new Error("Invalid token. JWT had invalid kid value."));
           }
 
-          console.log("Token: " + token);
-          console.log("Pem: " + pem);
           jwt.verify(token, pem, function (err, payload) {
             if (err) {
-              console.log("Error: " + err);
-              reject(new Error("Invalid token.", err));
+              console.log("JWT verify error: " + err);
+              reject(new Error("Invalid token. " + err));
             } else {
               payload['token'] = token;
               resolve(payload);
